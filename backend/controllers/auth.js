@@ -7,7 +7,7 @@ const config = require("../config");
 exports.login = async (req, res) => {
   const { email, password } = req.body;
 
-  const secret = require("crypto").randomBytes(64).toString("hex");
+  // const secret = require("crypto").randomBytes(64).toString("hex");
 
   try {
     const user = await User.findOne({ where: { email } });
