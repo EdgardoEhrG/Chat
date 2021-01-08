@@ -5,7 +5,7 @@ export const authService = {
     return api
       .post("/login", data)
       .then(({ data }) => {
-        api.defaults.headers["Authorization"] = `Bearer ${data.token}`;
+        setHeadersAndStorage(data);
         return data;
       })
       .catch((err) => console.log(err));
@@ -14,12 +14,32 @@ export const authService = {
     return api
       .post("/register", data)
       .then(({ data }) => {
-        api.defaults.headers["Authorization"] = `Bearer ${data.token}`;
+        setHeadersAndStorage(data);
+        return data;
+      })
+      .catch((err) => console.log(err));
+  },
+  updateProfile: (data) => {
+    const headers = {
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    };
+    return api
+      .post("/users/update", data, headers)
+      .then(({ data }) => {
+        localStorage.setItem("user", JSON.stringify(data));
         return data;
       })
       .catch((err) => console.log(err));
   },
   logout: () => {
     api.defaults.headers["Authorization"] = "";
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
   },
+};
+
+const setHeadersAndStorage = ({ user, token }) => {
+  api.defaults.headers["Authorization"] = `Bearer ${token}`;
+  localStorage.setItem("user", JSON.stringify(user));
+  localStorage.setItem("token", token);
 };

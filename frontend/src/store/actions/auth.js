@@ -1,10 +1,9 @@
-import { LOGIN, REGISTER, LOGOUT } from "../types";
+import { LOGIN, REGISTER, LOGOUT, USER_UPDATE } from "../types";
 
 import { authService } from "../../services/auth";
 
 export const login = (params, history) => (dispatch) => {
-  const { email, password } = params;
-  return authService.login({ email, password }).then((data) => {
+  return authService.login(params).then((data) => {
     dispatch({
       type: LOGIN,
       payload: data,
@@ -14,15 +13,27 @@ export const login = (params, history) => (dispatch) => {
 };
 
 export const register = (params, history) => (dispatch) => {
-  const { firstName, lastName, gender, email, password } = params;
+  return authService.register(params).then((data) => {
+    dispatch({
+      type: REGISTER,
+      payload: data,
+    });
+    history.push("/");
+  });
+};
+
+export const updateProfile = (params, history) => (dispatch) => {
   return authService
-    .register({ firstName, lastName, gender, email, password })
+    .updateProfile(params)
     .then((data) => {
       dispatch({
-        type: REGISTER,
+        type: USER_UPDATE,
         payload: data,
       });
       history.push("/");
+    })
+    .catch((err) => {
+      throw err;
     });
 };
 
