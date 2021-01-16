@@ -2,7 +2,7 @@ const router = require("express").Router();
 
 const { login, register } = require("../controllers/auth");
 const { update } = require("../controllers/user");
-const { index, create } = require("../controllers/chat");
+const { index, create, messages, deleteChat } = require("../controllers/chat");
 
 const { validate } = require("../helpers/validator");
 const { registrationRules } = require("../helpers/register");
@@ -25,5 +25,7 @@ router.post("/users", [auth, userFile, updateRules, validate], update);
 
 router.get("/chats", [auth], index);
 router.post("/chats/create", [auth], create);
+router.delete("/chats/:id", [auth], deleteChat);
+router.get("/messages", [auth], messages);
 
 module.exports = router;
