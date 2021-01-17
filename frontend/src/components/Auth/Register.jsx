@@ -55,6 +55,7 @@ const Register = ({ history }) => {
               <div className="input-field mb-1">
                 <input
                   type="text"
+                  name="firstName"
                   placeholder="Enter your first name"
                   value={firstName}
                   onChange={onChange}
@@ -64,6 +65,7 @@ const Register = ({ history }) => {
               <div className="input-field mb-1">
                 <input
                   type="text"
+                  name="lastName"
                   placeholder="Enter your last name"
                   value={lastName}
                   onChange={onChange}
@@ -71,7 +73,12 @@ const Register = ({ history }) => {
                 />
               </div>
               <div className="input-field mb-1">
-                <select value={gender} onChange={onChange} required>
+                <select
+                  name="gender"
+                  value={gender}
+                  onChange={onChange}
+                  required
+                >
                   <option value="male">Male</option>
                   <option value="female">Female</option>
                 </select>
@@ -79,6 +86,7 @@ const Register = ({ history }) => {
               <div className="input-field mb-1">
                 <input
                   type="email"
+                  name="email"
                   placeholder="Enter your email"
                   value={email}
                   onChange={onChange}
@@ -88,6 +96,7 @@ const Register = ({ history }) => {
               <div className="input-field mb-2">
                 <input
                   type="password"
+                  name="password"
                   placeholder="Enter your password"
                   value={password}
                   onChange={onChange}

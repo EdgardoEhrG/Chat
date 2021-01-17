@@ -14,7 +14,12 @@ exports.index = async (req, res) => {
       model: Chat,
       include: [
         { model: User, where: { [Op.not]: { id: req.user.id } } },
-        { model: Message, limit: 20, order: [["id", "DESC"]] },
+        {
+          model: Message,
+          include: [{ model: User }],
+          limit: 20,
+          order: [["id", "DESC"]],
+        },
       ],
     },
   });
@@ -88,6 +93,7 @@ exports.messages = async (req, res) => {
   const offset = page > 1 ? page * limits : 0;
   const messages = await Message.findAndCountAll({
     where: { chatId: req.query.id },
+    include: [{ model: User }],
     limit,
     offset,
   });
