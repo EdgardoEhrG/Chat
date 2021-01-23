@@ -1,6 +1,9 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const http = require("http");
+
+const socketServer = require("./socket");
 
 const config = require("./config");
 const router = require("./router");
@@ -16,6 +19,9 @@ app.use(express.static(__dirname + "/uploads"));
 
 const port = config.appPort;
 
-app.listen(port, () => {
+const server = http.createServer(app);
+socketServer(server);
+
+server.listen(port, () => {
   console.log(`Server is runnin' on port ${port}`);
 });

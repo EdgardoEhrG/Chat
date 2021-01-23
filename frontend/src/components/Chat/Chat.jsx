@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
+import useSocket from "../../hooks/socket";
 
 import { useSelector, useDispatch } from "react-redux";
-import { fetchChats } from "../../store/actions/chat";
 
 import Navbar from "../Navbar/Navbar";
 import FriendList from "./FriendList/FriendList";
@@ -13,11 +13,7 @@ const Chat = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.authReducer.user);
 
-  useEffect(() => {
-    dispatch(fetchChats())
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
-  }, [dispatch]);
+  useSocket(user, dispatch);
 
   return (
     <div id="chat-container">

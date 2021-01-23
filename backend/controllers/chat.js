@@ -96,6 +96,7 @@ exports.messages = async (req, res) => {
     include: [{ model: User }],
     limit,
     offset,
+    order: [["id", "DESC"]],
   });
   const totalPages = Math.ceil(messages.count / limit);
 
@@ -112,6 +113,14 @@ exports.messages = async (req, res) => {
   };
 
   return res.json(result);
+};
+
+exports.imageUpload = (req, res) => {
+  if (req.file) {
+    return res.json({ url: req.file.fileName });
+  }
+
+  return res.status(500).json({ message: "No image uploaded" });
 };
 
 exports.deleteChat = async (req, res) => {

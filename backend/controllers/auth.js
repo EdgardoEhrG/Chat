@@ -7,6 +7,8 @@ const config = require("../config");
 exports.login = async (req, res) => {
   const { email, password } = req.body;
 
+  console.log(req);
+
   // const secret = require("crypto").randomBytes(64).toString("hex");
 
   try {

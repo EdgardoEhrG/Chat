@@ -4,7 +4,7 @@ import store from "../store";
 import { logout } from "../store/actions/auth";
 
 const api = axios.create({
-  baseURL: "http://127.0.0.1:3000/login",
+  baseURL: "http://127.0.0.1:3000",
   headers: {
     Accept: "application/json",
     Authorization: `Bearer ${localStorage.getItem("token") || ""}`,
