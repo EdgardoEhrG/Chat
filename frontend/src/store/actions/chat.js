@@ -11,6 +11,10 @@ import {
   SENDER_TYPING,
   PAGINATE_MESSAGES,
   INCREMENT_SCROLL,
+  CREATE_CHAT,
+  ADD_USER_TO_GROUP,
+  LEAVE_CURRENT_CHAT,
+  DELETE_CURRENT_CHAT,
 } from "../types";
 
 export const setSocket = (socket) => (dispatch) => {
@@ -61,6 +65,22 @@ export const senderTyping = (sender) => (dispatch) => {
 
 export const incrementScroll = () => (dispatch) => {
   dispatch({ type: INCREMENT_SCROLL });
+};
+
+export const createChat = (chat) => (dispatch) => {
+  dispatch({ type: CREATE_CHAT, payload: chat });
+};
+
+export const addUserToGroup = (group) => (dispatch) => {
+  dispatch({ type: ADD_USER_TO_GROUP, payload: group });
+};
+
+export const leaveCurrentChat = (data) => (dispatch) => {
+  dispatch({ type: LEAVE_CURRENT_CHAT, payload: data });
+};
+
+export const deleteCurrentChat = (chatId) => (dispatch) => {
+  dispatch({ type: DELETE_CURRENT_CHAT, payload: chatId });
 };
 
 export const paginateMessages = (id, page) => (dispatch) => {
