@@ -20,6 +20,7 @@ import {
   faTimes,
   faBell,
 } from "@fortawesome/free-solid-svg-icons";
+
 library.add(
   faSmile,
   faImage,

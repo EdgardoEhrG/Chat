@@ -8,10 +8,17 @@
 
 > PostgreSQL
 
-> JS
-
 > React
 
 > Redux
 
-> SCSS
+> Sass (SCSS)
+
+## Useful elements
+
+- [ ] Protected router
+- [ ] Message logic
+- [ ] Socket hook
+- [ ] Upload logic
+- [ ] Auth
+- [ ] Socket connection
